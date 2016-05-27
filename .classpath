@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins">
+		<accessrules>
+			<accessrule kind="accessible" pattern="io/swagger/**"/>
+			<accessrule kind="accessible" pattern="com/fasterxml/jackson/datatype/joda/**"/>
+			<accessrule kind="accessible" pattern="com/sun/jersey/api/client/**"/>
+			<accessrule kind="accessible" pattern="com/sun/jersey/multipart/**"/>
+			<accessrule kind="accessible" pattern="net/sf/json/**"/>
+			<accessrule kind="accessible" pattern="org/joda/time/**"/>
+			<accessrule kind="accessible" pattern="com/sun/jersey/spi/inject/**"/>
+		</accessrules>
+	</classpathentry>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
