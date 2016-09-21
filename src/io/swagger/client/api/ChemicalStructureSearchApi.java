@@ -5,7 +5,10 @@ import io.swagger.client.ApiClient;
 import io.swagger.client.Configuration;
 import io.swagger.client.Pair;
 import io.swagger.client.TypeRef;
-
+import structure.structureExact.model.StructureExact;
+import structure.structureInformation.model.StructureInformation;
+import structure.structureSimilarity.model.StructureSimilarity;
+import structure.structureSubstructure.model.StructureSubstructure;
 
 import java.util.*;
 
@@ -43,7 +46,7 @@ public class ChemicalStructureSearchApi {
    * @param metadata Additional metadata to be included with response.
    * @return void
    */
-  public void structureGet (String appId, String appKey, String inchi, String inchiKey, String smiles, String format, String callback, String metadata) throws ApiException {
+  public StructureInformation structureGet (String appId, String appKey, String inchi, String inchiKey, String smiles, String format, String callback, String metadata) throws ApiException {
     Object postBody = null;
     byte[] postBinaryBody = null;
     
@@ -103,7 +106,7 @@ public class ChemicalStructureSearchApi {
 
     
     
-    apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, null);
+    return apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, new TypeRef<StructureInformation>() {});
     
     
 
@@ -122,7 +125,7 @@ public class ChemicalStructureSearchApi {
    * @param metadata Additional metadata to be included with response.
    * @return void
    */
-  public void structureExactGet (String appId, String appKey, String searchOptionsMolecule, Integer searchOptionsMatchType, String format, String callback, String metadata) throws ApiException {
+  public StructureExact structureExactGet (String appId, String appKey, String searchOptionsMolecule, Integer searchOptionsMatchType, String format, String callback, String metadata) throws ApiException {
     Object postBody = null;
     byte[] postBinaryBody = null;
     
@@ -190,7 +193,7 @@ public class ChemicalStructureSearchApi {
 
     
     
-    apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, null);
+    return apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, new TypeRef<StructureExact>() {});
     
     
 
@@ -214,7 +217,7 @@ public class ChemicalStructureSearchApi {
    * @param metadata Additional metadata to be included with response.
    * @return void
    */
-  public void structureSimilarityGet (String appId, String appKey, String searchOptionsMolecule, Integer searchOptionsSimilarityType, Double searchOptionsThreshold, Double searchOptionsAlpha, Double searchOptionsBeta, Integer resultOptionsStart, Integer resultOptionsCount, String format, String callback, String metadata) throws ApiException {
+  public StructureSimilarity structureSimilarityGet (String appId, String appKey, String searchOptionsMolecule, Integer searchOptionsSimilarityType, Double searchOptionsThreshold, Double searchOptionsAlpha, Double searchOptionsBeta, Integer resultOptionsStart, Integer resultOptionsCount, String format, String callback, String metadata) throws ApiException {
     Object postBody = null;
     byte[] postBinaryBody = null;
     
@@ -297,7 +300,7 @@ public class ChemicalStructureSearchApi {
 
     
     
-    apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, null);
+    return apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, new TypeRef<StructureSimilarity>() {});
     
     
 
@@ -318,7 +321,7 @@ public class ChemicalStructureSearchApi {
    * @param metadata Additional metadata to be included with response.
    * @return void
    */
-  public void structureSubstructureGet (String appId, String appKey, String searchOptionsMolecule, Integer searchOptionsMolType, Integer resultOptionsStart, Integer resultOptionsCount, String format, String callback, String metadata) throws ApiException {
+  public StructureSubstructure structureSubstructureGet (String appId, String appKey, String searchOptionsMolecule, Integer searchOptionsMolType, Integer resultOptionsStart, Integer resultOptionsCount, String format, String callback, String metadata) throws ApiException {
     Object postBody = null;
     byte[] postBinaryBody = null;
     
@@ -390,7 +393,7 @@ public class ChemicalStructureSearchApi {
 
     
     
-    apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, null);
+    return apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, new TypeRef<StructureSubstructure>() {});
     
     
 

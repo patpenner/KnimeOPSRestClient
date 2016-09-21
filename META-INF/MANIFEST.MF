@@ -14,14 +14,22 @@ Bundle-ClassPath:
  lib/json-lib-2.4-jdk15.jar,
  lib/swagger-parser-1.0.19.jar,
  lib/swagger-core-1.5.7.jar,
- lib/jersey-multipart-1.19.1.jar,
  lib/joda-time_2.5.0.jar,
  lib/jersey-bundle-1.8.jar,
  lib/jersey-common-2.23.jar,
- \lib\fasterxml\jackson\datatype\jackson-datatype-joda\2.4.5\jackson-datatype-joda-2.4.5.jar,
- \lib\fasterxml\jackson\dataformat\jackson-dataformat-yaml\2.4.5\jackson-dataformat-yaml-2.4.5.jar, 
- connector.jar
-Bundle-Activator: org.ops.connector.ConnectorNodePlugin
+ lib/fasterxml/jackson/datatype/jackson-datatype-joda/2.4.5/jackson-datatype-joda-2.4.5.jar,
+ lib/fasterxml/jackson/dataformat/jackson-dataformat-yaml/2.4.5/jackson-dataformat-yaml-2.4.5.jar,
+ connector.jar,
+ lib/swagger-parser-1.0.17.jar,
+ lib/jersey-client-1.19.1.jar,
+ lib/jersey-multipart-1.19.1.jar,
+ lib/javax.ws.rs-api-2.0.jar,
+ lib/jersey-bundle-1.19.jar,
+ lib/swagger-models-1.5.9.jar,
+ lib/io/swagger/swagger-core/1.5.7/swagger-core-1.5.7.jar,
+ lib/fasterxml/jackson/dataformat/jackson-dataformat-yaml/2.4.5/jackson-dataformat-yaml-2.4.5.jar,
+ lib/jackson-datatype-joda-2.7.4.jar
+Bundle-Activator: node.org.ops.connector.ConnectorNodePlugin
 Bundle-Vendor: Openphacts
 Require-Bundle: org.eclipse.core.runtime,
  org.knime.workbench.core,
@@ -35,26 +43,10 @@ Require-Bundle: org.eclipse.core.runtime,
  com.fasterxml.jackson.dataformat.jackson-dataformat-xml;bundle-version="2.5.2",
  com.fasterxml.jackson.datatype.jackson-datatype-jsr353;bundle-version="2.5.2",
  com.fasterxml.jackson.module.jackson-module-jaxb-annotations;bundle-version="2.5.2",
- io.swagger.annotations;bundle-version="1.5.4",
- io.swagger.models;bundle-version="1.5.9",
- swagger-parser-1.0.19;bundle-version="1.0.0",
- jackson-dataformat-yaml-2.4.5;bundle-version="1.0.0",
- commons-lang-2.6;bundle-version="1.0.0",
- slf4j-api-1.6.3;bundle-version="1.0.0",
- swagger-core-1.5.7;bundle-version="1.0.0",
- jackson-datatype-joda-2.6.6;bundle-version="1.0.0",
- json-lib-2.4-jdk15;bundle-version="1.0.0",
- slf4j-ext-1.6.3;bundle-version="1.0.0",
- slf4j-jdk;bundle-version="1.0.0",
  org.slf4j.api;bundle-version="1.7.2",
- slf4j-simple-1.6.1;bundle-version="1.0.0",
- jackson-mapper-asl-1.9.9;bundle-version="1.0.0",
  joda-time;bundle-version="2.5.0",
- jersey-multipart-1.19.1;bundle-version="1.0.0",
- jersey-bundle-1.19;bundle-version="1.0.0",
- jersey-common-2.23;bundle-version="1.0.0",
- org.apache.cxf,
  org.knime.core
 Bundle-ActivationPolicy: lazy
-Export-Package: org.ops.connector
+Export-Package: node.org.ops.connector
+Import-Package: org.knime.chem.types
 

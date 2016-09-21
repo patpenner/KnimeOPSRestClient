@@ -18,8 +18,17 @@
          point="org.knime.workbench.repository.nodes">
       <node
             category-path="/"
-            factory-class="org.ops.connector.ConnectorNodeFactory"
+            factory-class="node.org.ops.connector.ConnectorNodeFactory"
             id="org.ops.connector.ConnectorNodeFactory"/>
+      <node
+            category-path="/"
+            factory-class="node.urifinder.URIFinderNodeFactory"
+            id="node.urifinder.URIFinderNodeFactory"/>
+            
+      <node
+            category-path="/"
+            factory-class="node.patentsplitter.PatentSplitterNodeFactory"
+            id="node.urifinder.PatentSplitterNodeFactory"/>
    </extension>
    
 </plugin>

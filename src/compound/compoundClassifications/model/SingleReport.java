@@ -1,9 +1,5 @@
 package compound.compoundClassifications.model;
 
-import java.util.HashMap;
-import java.util.Map;
-
-
 public class SingleReport {
 
 	private  String _about;

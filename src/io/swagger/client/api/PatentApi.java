@@ -5,7 +5,13 @@ import io.swagger.client.ApiClient;
 import io.swagger.client.Configuration;
 import io.swagger.client.Pair;
 import io.swagger.client.TypeRef;
-
+import patent.patentByCompound.model.PatentByCompound;
+import patent.patentByCompoundCount.model.PatentByCompoundCount;
+import patent.patentByDisease.model.PatentByDisease;
+import patent.patentByDiseaseCount.model.PatentByDiseaseCount;
+import patent.patentByTarget.model.PatentByTarget;
+import patent.patentByTargetCount.model.PatentByTargetCount;
+import patent.patentInformation.model.PatentInformation;
 
 import java.util.*;
 
@@ -41,7 +47,7 @@ public class PatentApi {
    * @param metadata Additional metadata to be included with response.
    * @return void
    */
-  public void patentGet (String uri, String appId, String appKey, String format, String callback, String metadata) throws ApiException {
+  public PatentInformation patentGet (String uri, String appId, String appKey, String format, String callback, String metadata) throws ApiException {
     Object postBody = null;
     byte[] postBinaryBody = null;
     
@@ -102,7 +108,7 @@ public class PatentApi {
 
     
     
-    apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, null);
+    return apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, new TypeRef<PatentInformation>() {});
     
     
 
@@ -140,7 +146,7 @@ public class PatentApi {
    * @param metadata Additional metadata to be included with response.
    * @return void
    */
-  public void patentByCompoundGet (String uri, String appId, String appKey, Integer score, Integer minScore, Integer minExScore, Integer maxScore, Integer maxExScore, Integer frequency, Integer minFrequency, Integer minExFrequency, Integer maxFrequency, Integer maxExFrequency, String classification, Boolean title, Boolean _abstract, Boolean description, Boolean claims, Boolean image, Boolean cwu, Integer page, Integer pageSize, String orderBy, String format, String callback, String metadata) throws ApiException {
+  public PatentByCompound patentByCompoundGet (String uri, String appId, String appKey, Integer score, Integer minScore, Integer minExScore, Integer maxScore, Integer maxExScore, Integer frequency, Integer minFrequency, Integer minExFrequency, Integer maxFrequency, Integer maxExFrequency, String classification, Boolean title, Boolean _abstract, Boolean description, Boolean claims, Boolean image, Boolean cwu, Integer page, Integer pageSize, String orderBy, String format, String callback, String metadata) throws ApiException {
     Object postBody = null;
     byte[] postBinaryBody = null;
     
@@ -241,7 +247,7 @@ public class PatentApi {
 
     
     
-    apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, null);
+    return apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames,new TypeRef<PatentByCompound>() {});
     
     
 
@@ -276,7 +282,7 @@ public class PatentApi {
    * @param metadata Additional metadata to be included with response.
    * @return void
    */
-  public void patentByCompoundCountGet (String uri, String appId, String appKey, Integer score, Integer minScore, Integer minExScore, Integer maxScore, Integer maxExScore, Integer frequency, Integer minFrequency, Integer minExFrequency, Integer maxFrequency, Integer maxExFrequency, String classification, Boolean title, Boolean _abstract, Boolean description, Boolean claims, Boolean image, Boolean cwu, String format, String callback, String metadata) throws ApiException {
+  public PatentByCompoundCount patentByCompoundCountGet (String uri, String appId, String appKey, Integer score, Integer minScore, Integer minExScore, Integer maxScore, Integer maxExScore, Integer frequency, Integer minFrequency, Integer minExFrequency, Integer maxFrequency, Integer maxExFrequency, String classification, Boolean title, Boolean _abstract, Boolean description, Boolean claims, Boolean image, Boolean cwu, String format, String callback, String metadata) throws ApiException {
     Object postBody = null;
     byte[] postBinaryBody = null;
     
@@ -371,7 +377,7 @@ public class PatentApi {
 
     
     
-    apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, null);
+    return apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, new TypeRef<PatentByCompoundCount>() {});
     
     
 
@@ -409,7 +415,7 @@ public class PatentApi {
    * @param metadata Additional metadata to be included with response.
    * @return void
    */
-  public void patentByDiseaseGet (String uri, String appId, String appKey, Integer score, Integer minScore, Integer minExScore, Integer maxScore, Integer maxExScore, Integer frequency, Integer minFrequency, Integer minExFrequency, Integer maxFrequency, Integer maxExFrequency, String classification, Boolean title, Boolean _abstract, Boolean description, Boolean claims, Boolean image, Boolean cwu, Integer page, Integer pageSize, String orderBy, String format, String callback, String metadata) throws ApiException {
+  public PatentByDisease patentByDiseaseGet (String uri, String appId, String appKey, Integer score, Integer minScore, Integer minExScore, Integer maxScore, Integer maxExScore, Integer frequency, Integer minFrequency, Integer minExFrequency, Integer maxFrequency, Integer maxExFrequency, String classification, Boolean title, Boolean _abstract, Boolean description, Boolean claims, Boolean image, Boolean cwu, Integer page, Integer pageSize, String orderBy, String format, String callback, String metadata) throws ApiException {
     Object postBody = null;
     byte[] postBinaryBody = null;
     
@@ -510,7 +516,7 @@ public class PatentApi {
 
     
     
-    apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, null);
+    return apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, new TypeRef<PatentByDisease>() {});
     
     
 
@@ -545,7 +551,7 @@ public class PatentApi {
    * @param metadata Additional metadata to be included with response.
    * @return void
    */
-  public void patentByDiseaseCountGet (String uri, String appId, String appKey, Integer score, Integer minScore, Integer minExScore, Integer maxScore, Integer maxExScore, Integer frequency, Integer minFrequency, Integer minExFrequency, Integer maxFrequency, Integer maxExFrequency, String classification, Boolean title, Boolean _abstract, Boolean description, Boolean claims, Boolean image, Boolean cwu, String format, String callback, String metadata) throws ApiException {
+  public PatentByDiseaseCount patentByDiseaseCountGet (String uri, String appId, String appKey, Integer score, Integer minScore, Integer minExScore, Integer maxScore, Integer maxExScore, Integer frequency, Integer minFrequency, Integer minExFrequency, Integer maxFrequency, Integer maxExFrequency, String classification, Boolean title, Boolean _abstract, Boolean description, Boolean claims, Boolean image, Boolean cwu, String format, String callback, String metadata) throws ApiException {
     Object postBody = null;
     byte[] postBinaryBody = null;
     
@@ -640,7 +646,7 @@ public class PatentApi {
 
     
     
-    apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, null);
+    return apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, new TypeRef<PatentByDiseaseCount>() {});
     
     
 
@@ -678,7 +684,7 @@ public class PatentApi {
    * @param metadata Additional metadata to be included with response.
    * @return void
    */
-  public void patentByTargetGet (String uri, String appId, String appKey, Integer score, Integer minScore, Integer minExScore, Integer maxScore, Integer maxExScore, Integer frequency, Integer minFrequency, Integer minExFrequency, Integer maxFrequency, Integer maxExFrequency, String classification, Boolean title, Boolean _abstract, Boolean description, Boolean claims, Boolean image, Boolean cwu, Integer page, Integer pageSize, String orderBy, String format, String callback, String metadata) throws ApiException {
+  public PatentByTarget patentByTargetGet (String uri, String appId, String appKey, Integer score, Integer minScore, Integer minExScore, Integer maxScore, Integer maxExScore, Integer frequency, Integer minFrequency, Integer minExFrequency, Integer maxFrequency, Integer maxExFrequency, String classification, Boolean title, Boolean _abstract, Boolean description, Boolean claims, Boolean image, Boolean cwu, Integer page, Integer pageSize, String orderBy, String format, String callback, String metadata) throws ApiException {
     Object postBody = null;
     byte[] postBinaryBody = null;
     
@@ -779,7 +785,7 @@ public class PatentApi {
 
     
     
-    apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, null);
+    return apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, new TypeRef<PatentByTarget>() {});
     
     
 
@@ -814,7 +820,7 @@ public class PatentApi {
    * @param metadata Additional metadata to be included with response.
    * @return void
    */
-  public void patentByTargetCountGet (String uri, String appId, String appKey, Integer score, Integer minScore, Integer minExScore, Integer maxScore, Integer maxExScore, Integer frequency, Integer minFrequency, Integer minExFrequency, Integer maxFrequency, Integer maxExFrequency, String classification, Boolean title, Boolean _abstract, Boolean description, Boolean claims, Boolean image, Boolean cwu, String format, String callback, String metadata) throws ApiException {
+  public PatentByTargetCount patentByTargetCountGet (String uri, String appId, String appKey, Integer score, Integer minScore, Integer minExScore, Integer maxScore, Integer maxExScore, Integer frequency, Integer minFrequency, Integer minExFrequency, Integer maxFrequency, Integer maxExFrequency, String classification, Boolean title, Boolean _abstract, Boolean description, Boolean claims, Boolean image, Boolean cwu, String format, String callback, String metadata) throws ApiException {
     Object postBody = null;
     byte[] postBinaryBody = null;
     
@@ -909,7 +915,7 @@ public class PatentApi {
 
     
     
-    apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, null);
+    return apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, new TypeRef<PatentByTargetCount>() {});
     
     
 

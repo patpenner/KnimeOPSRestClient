@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry exported="true" kind="lib" path="lib/jackson-datatype-joda-2.7.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/fasterxml/jackson/dataformat/jackson-dataformat-yaml/2.4.5/jackson-dataformat-yaml-2.4.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/io/swagger/swagger-core/1.5.7/swagger-core-1.5.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/swagger-models-1.5.9.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jersey-bundle-1.19.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/javax.ws.rs-api-2.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jersey-multipart-1.19.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jersey-client-1.19.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/swagger-parser-1.0.17.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins">
 		<accessrules>
