@@ -166,7 +166,7 @@ public class URIFinderNodeModel extends NodeModel
   private String getURI(String identifier,
       ChemicalStructureSearchApi structureApi)
   {
-    // makes the apropriat API call
+    // makes the apropriate API call
     // returns null on API failure
 
     String uri = null;
