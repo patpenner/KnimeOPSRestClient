@@ -166,11 +166,13 @@ public class PatentNodeModel extends NodeModel
         identifierType = checkIdentifierType(identifier);
       }
 
+      exec.setMessage(" Connecting to Open Phacts");
       String uri = getURI(identifier, identifierType, structureSearchApi);
 
       if (uri != null)
       {
-        // actual API call, returns null if something goes wrong (Not Found /
+        // actual API call, returns null if something goes wrong (Not
+        // Found /
         // Exception)
         PatentByCompound patentResponse = makeCall(patentApi, uri,
             m_appId.getStringValue().trim(), m_appKey.getStringValue().trim());
@@ -187,22 +189,33 @@ public class PatentNodeModel extends NodeModel
         }
         else
         {
-          notPatentedConainer
-              .addRowToTable(makeNoPatentRow(noPatentRowIndex, row));
-          noPatentRowIndex++;
+          int statuscode = apiClient.getStatusCode();
+          if (statuscode == 404)
+          {
+            notPatentedConainer
+                .addRowToTable(makeNoPatentRow(noPatentRowIndex, row));
+            noPatentRowIndex++;
+          }
+          else
+          {
+            errorContainer.addRowToTable(makeErrorRow(errorRowIndex, row,
+                "Error Finding Patent: HTTP " + statuscode));
+            errorRowIndex++;
+          }
+
         }
       }
       else
       {
-        errorContainer.addRowToTable(
-            makeErrorRow(errorRowIndex, row, "" + apiClient.getStatusCode()));
+        errorContainer.addRowToTable(makeErrorRow(errorRowIndex, row,
+            "Error Finding URI: HTTP " + apiClient.getStatusCode()));
         errorRowIndex++;
       }
       currentRow++;
 
       // setting progress bar and message
       exec.setProgress((double) currentRow / rowCount,
-          "processing row " + (currentRow + 1));
+          "Processing row " + (currentRow + 1));
     }
 
     notPatentedConainer.close();
@@ -249,7 +262,8 @@ public class PatentNodeModel extends NodeModel
     {
       if (identifierType.equals("SMILES"))
       {
-        // structure/exact call finds more URIs than conventional structure
+        // structure/exact call finds more URIs than conventional
+        // structure
         // call, only applicable to smiles
         StructureExact structureResponse = structureApi.structureExactGet(
             m_appId.getStringValue(), m_appKey.getStringValue(), identifier, 0,
@@ -471,9 +485,8 @@ public class PatentNodeModel extends NodeModel
     // creating Cells with the new information
     // BooleanCell creation is strange but according to docs I hope
     // http://tech.knime.org/docs/api/org/knime/core/data/def/BooleanCell.html#get-boolean-
-    DataCell[] newCells = { UriCellFactory.create(uri), 
-        new StringCell(patentId),
-        UriCellFactory.create(patentUri),
+    DataCell[] newCells = { UriCellFactory.create(uri),
+        new StringCell(patentId), UriCellFactory.create(patentUri),
         new DateAndTimeCell(Integer.parseInt(splitDate[0]),
             Integer.parseInt(splitDate[1]), Integer.parseInt(splitDate[2])),
         new StringCell(title), new IntCell(relevanceScore),

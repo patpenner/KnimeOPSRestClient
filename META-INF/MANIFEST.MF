@@ -45,8 +45,8 @@ Require-Bundle: org.eclipse.core.runtime,
  com.fasterxml.jackson.module.jackson-module-jaxb-annotations;bundle-version="2.5.2",
  org.slf4j.api;bundle-version="1.7.2",
  joda-time;bundle-version="2.5.0",
- org.knime.core
+ org.knime.core,
+ org.knime.chem.types;bundle-version="3.1.0"
 Bundle-ActivationPolicy: lazy
 Export-Package: node.org.ops.connector
-Import-Package: org.knime.chem.types
 
