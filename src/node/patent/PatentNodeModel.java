@@ -207,9 +207,24 @@ public class PatentNodeModel extends NodeModel
       }
       else
       {
-        errorContainer.addRowToTable(makeErrorRow(errorRowIndex, row,
-            "Error Finding URI: HTTP " + apiClient.getStatusCode()));
-        errorRowIndex++;
+        int statuscode = apiClient.getStatusCode();
+        if (statuscode == 404)
+        {
+//          notPatentedConainer
+//              .addRowToTable(makeNoPatentRow(noPatentRowIndex, row));
+//          noPatentRowIndex++;
+          
+          errorContainer.addRowToTable(makeErrorRow(errorRowIndex, row,
+              "Error Finding URI: HTTP " + apiClient.getStatusCode()));
+          errorRowIndex++;
+        }
+        else
+        {
+          errorContainer.addRowToTable(makeErrorRow(errorRowIndex, row,
+              "Error Finding URI: HTTP " + apiClient.getStatusCode()));
+          errorRowIndex++;
+        }
+
       }
       currentRow++;
 
@@ -238,7 +253,7 @@ public class PatentNodeModel extends NodeModel
   {
     // mainly catches SDF format
     if (identifier.contains("\n")) { throw new InvalidSettingsException(
-        "Identifier not a SMILES, InChI or InChI Key"); }
+        "Identifier not a Smiles, InChI or InChI Key"); }
 
     // rudimentary separation of the three accepted identifiers
     if (identifier.contains("InChI"))
@@ -246,7 +261,7 @@ public class PatentNodeModel extends NodeModel
       return "InChI";
     }
     else if (identifier.contains("=") || identifier.contains("(")
-        || identifier.contains("c")) { return "SMILES"; }
+        || identifier.contains("c")) { return "Smiles"; }
     return "InChI Key";
   }
 
@@ -260,7 +275,7 @@ public class PatentNodeModel extends NodeModel
     // Method defines identifier type by position of argument
     try
     {
-      if (identifierType.equals("SMILES"))
+      if (identifierType.equals("Smiles"))
       {
         // structure/exact call finds more URIs than conventional
         // structure

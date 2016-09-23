@@ -9,29 +9,29 @@
     <fullDescription>
         <intro>Insert long description here...</intro>
         
-        
-        <option name="short name of first option (like in the dialog)">description of first option</option>
-        <option name="short name of second option (like in the dialog)">description of second option</option>
         <!-- possibly more options that can also be grouped by tabs -->
-        <!--
-        <tab name="Standard Options">
-            <option name="short name of first option (like in the dialog)">description of first option</option>
-            <option name="short name of second option (like in the dialog)">description of second option</option>
+        <tab name="Options">
+            <option name="App ID">Enter your Open Phacts App ID</option>
+            <option name="App Key">Enter your Open Phacts App Key</option>
+            <option name="Identifier">Select the chemical Identifier to use</option>
         </tab>
-        <tab name="Advanced Options">
-            <option name="short name of first advanced option (like in the dialog)">description of first advanced option</option>
+        <tab name="Search Filters">
+            <option name="Relevance Score">Filter results by Relevance Score. The Relevance Score is part of the Open Phacts Patent Annotation. For more information visit the <a href ="http://support.openphacts.org/support/solutions/articles/4000079208-surechembl-">Open Phacts Support Portal</a></option>
+            <option name="Frequency">Filter results by the frequency that a molecule appears in a patent</option>
+            <option name="Patent Classification">Filter results by their Patent Classification. For more information visit the <a href ="http://support.openphacts.org/support/solutions/articles/4000079208-surechembl-">Open Phacts Support Portal</a></option>
+            <option name="Found in ...">Filter results by whether they are found in a particular field of a patent</option>
         </tab>
-        -->
     </fullDescription>
     
     <ports>
-        <inPort index="0" name="In-Port name">Description of first input port...</inPort>
+        <inPort index="0" name="Identifier">Must contain at least one column of valid identifiers (Smiles, InChI, InChI Key)</inPort>
         <!-- possibly more input ports here-->
-        <outPort index="0" name="Out-Port name">Description of first output port...</outPort>
+        <outPort index="0" name="Not Patented">Contains rows whose identifiers don't have patents associated with them</outPort>
         <!-- possibly more output ports here-->
+        <outPort index="1" name="Patented">Contains rows whose identifiers have patents associated with them, as well as information about those patents</outPort>
+        <outPort index="2" name="Error">Contains rows that encountered Errors during processing</outPort>
     </ports>    
-    <views>
-        <view index="0" name="name of first view">Description of first view...</view>
-        <!--view index="1" name="name of second view">Description of second view...</view-->
-    </views>
+    <!-- views>
+        <view index="1" name="name of second view">Description of second view...</view>
+    </views-->
 </knimeNode>

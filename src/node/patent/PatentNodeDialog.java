@@ -35,18 +35,18 @@ public class PatentNodeDialog extends DefaultNodeSettingsPane
     // authentification and column selection
     addDialogComponent(new DialogComponentString(
         new SettingsModelString(PatentNodeModel.CFGKEY_APPID, "861f498d"),
-        "Enter an App Id"));
+        "App ID"));
 
     addDialogComponent(new DialogComponentString(
         new SettingsModelString(PatentNodeModel.CFGKEY_APPKEY,
             "a4c4cfeafc60d525dd5b286906e21e06"),
-        "Enter an App Id"));
+        "App Key"));
 
     addDialogComponent(
         new DialogComponentColumnNameSelection(
             new SettingsModelString(PatentNodeModel.CFGKEY_COLUMN_NAME,
                 "Select a column"),
-            "Select an Identifier", 0, StringValue.class));
+            "Identifier Column", 0, StringValue.class));
 
     createNewTab("Search Filters");
 
@@ -81,31 +81,31 @@ public class PatentNodeDialog extends DefaultNodeSettingsPane
     addDialogComponent(new DialogComponentStringSelection(
         new SettingsModelString(PatentNodeModel.CFGKEY_IN_TITLE,
             booleanNoneList[0]),
-        "found in Title             ", booleanNoneList));
+        "Found in Title             ", booleanNoneList));
     addDialogComponent(
         new DialogComponentStringSelection(
             new SettingsModelString(PatentNodeModel.CFGKEY_IN_ABSRACT,
                 booleanNoneList[0]),
-            "found in Abstract      ", booleanNoneList));
+            "Found in Abstract      ", booleanNoneList));
     addDialogComponent(new DialogComponentStringSelection(
         new SettingsModelString(PatentNodeModel.CFGKEY_IN_DESCRIPTION,
             booleanNoneList[0]),
-        "found in Description", booleanNoneList));
+        "Found in Description", booleanNoneList));
     addDialogComponent(
         new DialogComponentStringSelection(
             new SettingsModelString(PatentNodeModel.CFGKEY_IN_CLAIMS,
                 booleanNoneList[0]),
-            "found in Claims         ", booleanNoneList));
+            "Found in Claims         ", booleanNoneList));
     addDialogComponent(
         new DialogComponentStringSelection(
             new SettingsModelString(PatentNodeModel.CFGKEY_IN_IMAGE,
                 booleanNoneList[0]),
-            "found in Image          ", booleanNoneList));
+            "Found in Image          ", booleanNoneList));
     addDialogComponent(
         new DialogComponentStringSelection(
             new SettingsModelString(PatentNodeModel.CFGKEY_IN_CWU,
                 booleanNoneList[0]),
-            "found in CWU            ", booleanNoneList));
+            "Found in CWU            ", booleanNoneList));
 
   }
 }
