@@ -3,14 +3,13 @@ package node.patent;
 import org.knime.core.data.StringValue;
 import org.knime.core.node.defaultnodesettings.DefaultNodeSettingsPane;
 import org.knime.core.node.defaultnodesettings.DialogComponentColumnNameSelection;
+import org.knime.core.node.defaultnodesettings.DialogComponentNumber;
 import org.knime.core.node.defaultnodesettings.DialogComponentNumberEdit;
 import org.knime.core.node.defaultnodesettings.DialogComponentString;
 import org.knime.core.node.defaultnodesettings.DialogComponentStringSelection;
 import org.knime.core.node.defaultnodesettings.SettingsModelInteger;
 import org.knime.core.node.defaultnodesettings.SettingsModelIntegerBounded;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
-
-import node.patentsplitter.PatentSplitterNodeModel;
 
 /**
  * <code>NodeDialog</code> for the "Patent" Node.
@@ -34,17 +33,18 @@ public class PatentNodeDialog extends DefaultNodeSettingsPane
     super();
 
     // authentification and column selection
-    addDialogComponent(new DialogComponentString(new SettingsModelString(
-        PatentSplitterNodeModel.CFGKEY_APPID, "861f498d"), "Enter an App Id"));
+    addDialogComponent(new DialogComponentString(
+        new SettingsModelString(PatentNodeModel.CFGKEY_APPID, "861f498d"),
+        "Enter an App Id"));
 
     addDialogComponent(new DialogComponentString(
-        new SettingsModelString(PatentSplitterNodeModel.CFGKEY_APPKEY,
+        new SettingsModelString(PatentNodeModel.CFGKEY_APPKEY,
             "a4c4cfeafc60d525dd5b286906e21e06"),
         "Enter an App Id"));
 
     addDialogComponent(
         new DialogComponentColumnNameSelection(
-            new SettingsModelString(PatentSplitterNodeModel.CFGKEY_COLUMN_NAME,
+            new SettingsModelString(PatentNodeModel.CFGKEY_COLUMN_NAME,
                 "Select a column"),
             "Select an Identifier", 0, StringValue.class));
 
@@ -52,61 +52,60 @@ public class PatentNodeDialog extends DefaultNodeSettingsPane
 
     // numerical search filters
     // TODO: fix alignment
-    String[] operatorList = { ">=", ">", "=", "<", "<="};
-    addDialogComponent(
-        new DialogComponentStringSelection(
-            new SettingsModelString(
-                PatentSplitterNodeModel.CFGKEY_SCORE_OPERATOR, ""),
-            "Relevance Score", operatorList));
 
-    addDialogComponent(
-        new DialogComponentNumberEdit(new SettingsModelIntegerBounded(
-            PatentSplitterNodeModel.CFGKEY_SCORE, 0, 0, 3), ""));
+    setHorizontalPlacement(true);
+    String[] operatorList = { ">=", ">", "=", "<", "<="};
+    addDialogComponent(new DialogComponentStringSelection(
+        new SettingsModelString(PatentNodeModel.CFGKEY_SCORE_OPERATOR, ""),
+        "Relevance Score", operatorList));
+
+    addDialogComponent(new DialogComponentNumber(
+        new SettingsModelIntegerBounded(PatentNodeModel.CFGKEY_SCORE, 0, 0, 3),
+        "", 1));
 
     addDialogComponent(new DialogComponentStringSelection(
-        new SettingsModelString(
-            PatentSplitterNodeModel.CFGKEY_FREQUENCY_OPERATOR, ""),
+        new SettingsModelString(PatentNodeModel.CFGKEY_FREQUENCY_OPERATOR, ""),
         "Frequency", operatorList));
 
-    addDialogComponent(new DialogComponentNumberEdit(
-        new SettingsModelInteger(PatentSplitterNodeModel.CFGKEY_FREQUENCY, 0),
-        ""));
+    addDialogComponent(new DialogComponentNumber(
+        new SettingsModelInteger(PatentNodeModel.CFGKEY_FREQUENCY, 0), "", 1));
 
-    createNewTab("Patent Search Filters");
-
+    setHorizontalPlacement(false);
     // Patent specific search filters
-    addDialogComponent(
-        new DialogComponentString(
-            new SettingsModelString(
-                PatentSplitterNodeModel.CFGKEY_CLASSIFICATION, ""),
-            "Patent Classification"));
+    addDialogComponent(new DialogComponentString(
+        new SettingsModelString(PatentNodeModel.CFGKEY_CLASSIFICATION, ""),
+        "Patent Classification"));
 
     String[] booleanNoneList = { " ", "True", "False"};
 
     addDialogComponent(new DialogComponentStringSelection(
-        new SettingsModelString(PatentSplitterNodeModel.CFGKEY_IN_TITLE,
+        new SettingsModelString(PatentNodeModel.CFGKEY_IN_TITLE,
             booleanNoneList[0]),
-        "found in Title", booleanNoneList));
+        "found in Title             ", booleanNoneList));
+    addDialogComponent(
+        new DialogComponentStringSelection(
+            new SettingsModelString(PatentNodeModel.CFGKEY_IN_ABSRACT,
+                booleanNoneList[0]),
+            "found in Abstract      ", booleanNoneList));
     addDialogComponent(new DialogComponentStringSelection(
-        new SettingsModelString(PatentSplitterNodeModel.CFGKEY_IN_ABSRACT,
-            booleanNoneList[0]),
-        "found in Abstract", booleanNoneList));
-    addDialogComponent(new DialogComponentStringSelection(
-        new SettingsModelString(PatentSplitterNodeModel.CFGKEY_IN_DESCRIPTION,
+        new SettingsModelString(PatentNodeModel.CFGKEY_IN_DESCRIPTION,
             booleanNoneList[0]),
         "found in Description", booleanNoneList));
-    addDialogComponent(new DialogComponentStringSelection(
-        new SettingsModelString(PatentSplitterNodeModel.CFGKEY_IN_CLAIMS,
-            booleanNoneList[0]),
-        "found in Claims", booleanNoneList));
-    addDialogComponent(new DialogComponentStringSelection(
-        new SettingsModelString(PatentSplitterNodeModel.CFGKEY_IN_IMAGE,
-            booleanNoneList[0]),
-        "found in Image", booleanNoneList));
-    addDialogComponent(new DialogComponentStringSelection(
-        new SettingsModelString(PatentSplitterNodeModel.CFGKEY_IN_CWU,
-            booleanNoneList[0]),
-        "found in CWU", booleanNoneList));
+    addDialogComponent(
+        new DialogComponentStringSelection(
+            new SettingsModelString(PatentNodeModel.CFGKEY_IN_CLAIMS,
+                booleanNoneList[0]),
+            "found in Claims         ", booleanNoneList));
+    addDialogComponent(
+        new DialogComponentStringSelection(
+            new SettingsModelString(PatentNodeModel.CFGKEY_IN_IMAGE,
+                booleanNoneList[0]),
+            "found in Image          ", booleanNoneList));
+    addDialogComponent(
+        new DialogComponentStringSelection(
+            new SettingsModelString(PatentNodeModel.CFGKEY_IN_CWU,
+                booleanNoneList[0]),
+            "found in CWU            ", booleanNoneList));
 
   }
 }
