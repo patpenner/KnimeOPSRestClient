@@ -1,6 +1,11 @@
 package node.localPatent;
 
+import org.knime.core.data.DataValue;
 import org.knime.core.node.defaultnodesettings.DefaultNodeSettingsPane;
+import org.knime.core.node.defaultnodesettings.DialogComponentColumnNameSelection;
+import org.knime.core.node.defaultnodesettings.SettingsModelString;
+
+import node.openPhactsPatent.OpenPhactsPatentNodeModel;
 
 /**
  * <code>NodeDialog</code> for the "Patent" Node.
@@ -19,6 +24,13 @@ public class PatentNodeDialog extends DefaultNodeSettingsPane {
      * New pane for configuring the Patent node.
      */
     protected PatentNodeDialog() {
+      super();
+      
+      addDialogComponent(
+          new DialogComponentColumnNameSelection(
+              new SettingsModelString(OpenPhactsPatentNodeModel.CFGKEY_COLUMN_NAME,
+                  "Select a column"),
+              "Identifier Column", 0, DataValue.class));
 
     }
 }
