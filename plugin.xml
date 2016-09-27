@@ -17,7 +17,8 @@
       <node category-path="/" factory-class="node.org.ops.connector.ConnectorNodeFactory" id="org.ops.connector.ConnectorNodeFactory"/>
       <node category-path="/" factory-class="node.urifinder.URIFinderNodeFactory" id="node.urifinder.URIFinderNodeFactory"/>
       <node category-path="/" factory-class="node.patentsplitter.PatentSplitterNodeFactory" id="node.urifinder.PatentSplitterNodeFactory"/>
-   	  <node category-path="/" factory-class="node.patent.PatentNodeFactory" id="node.patent.PatentNodeFactory"/>
-	</extension>
+   	  <node category-path="/" factory-class="node.openPhactsPatent.OpenPhactsPatentNodeFactory" id="node.patent.PatentNodeFactory"/>
+	<node category-path="/" factory-class="node.localPatent.PatentNodeFactory" id="node.localPatent.PatentNodeFactory"/>
+</extension>
    
 </plugin>

@@ -1,4 +1,4 @@
-package node.openPhactsPatent;
+package node.localPatent;
 
 import org.knime.core.node.NodeDialogPane;
 import org.knime.core.node.NodeFactory;
@@ -10,15 +10,15 @@ import org.knime.core.node.NodeView;
  *
  * @author Patrick Penner
  */
-public class OpenPhactsPatentNodeFactory 
-        extends NodeFactory<OpenPhactsPatentNodeModel> {
+public class PatentNodeFactory 
+        extends NodeFactory<PatentNodeModel> {
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public OpenPhactsPatentNodeModel createNodeModel() {
-        return new OpenPhactsPatentNodeModel();
+    public PatentNodeModel createNodeModel() {
+        return new PatentNodeModel();
     }
 
     /**
@@ -26,16 +26,16 @@ public class OpenPhactsPatentNodeFactory
      */
     @Override
     public int getNrNodeViews() {
-        return 0;
+        return 1;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public NodeView<OpenPhactsPatentNodeModel> createNodeView(final int viewIndex,
-            final OpenPhactsPatentNodeModel nodeModel) {
-        return new OpenPhactsPatentNodeView(nodeModel);
+    public NodeView<PatentNodeModel> createNodeView(final int viewIndex,
+            final PatentNodeModel nodeModel) {
+        return new PatentNodeView(nodeModel);
     }
 
     /**
@@ -51,7 +51,7 @@ public class OpenPhactsPatentNodeFactory
      */
     @Override
     public NodeDialogPane createNodeDialogPane() {
-        return new OpenPhactsPatentNodeDialog();
+        return new PatentNodeDialog();
     }
 
 }

@@ -1,4 +1,4 @@
-package node.openPhactsPatent;
+package node.localPatent;
 
 import org.knime.core.node.NodeView;
 
@@ -8,14 +8,14 @@ import org.knime.core.node.NodeView;
  *
  * @author Patrick Penner
  */
-public class OpenPhactsPatentNodeView extends NodeView<OpenPhactsPatentNodeModel> {
+public class PatentNodeView extends NodeView<PatentNodeModel> {
 
     /**
      * Creates a new view.
      * 
-     * @param nodeModel The model (class: {@link OpenPhactsPatentNodeModel})
+     * @param nodeModel The model (class: {@link PatentNodeModel})
      */
-    protected OpenPhactsPatentNodeView(final OpenPhactsPatentNodeModel nodeModel) {
+    protected PatentNodeView(final PatentNodeModel nodeModel) {
         super(nodeModel);
         // TODO: generated method stub
     }

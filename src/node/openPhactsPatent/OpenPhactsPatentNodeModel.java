@@ -1,4 +1,4 @@
-package node.patent;
+package node.openPhactsPatent;
 
 import java.io.File;
 import java.io.IOException;
@@ -50,7 +50,7 @@ import structure.structureInformation.model.StructureInformation;
  *
  * @author Patrick Penner
  */
-public class PatentNodeModel extends NodeModel
+public class OpenPhactsPatentNodeModel extends NodeModel
 {
 
   public static final String CFGKEY_COLUMN_NAME = "columnName";
@@ -103,7 +103,7 @@ public class PatentNodeModel extends NodeModel
   /**
    * Constructor for the node model.
    */
-  protected PatentNodeModel()
+  protected OpenPhactsPatentNodeModel()
   {
 
     // in 0: table with identifier (smiles, inchi, inchi key)
