@@ -1,4 +1,4 @@
-package node.localPatent;
+package node.patent;
 
 import java.util.Date;
 import java.util.HashMap;

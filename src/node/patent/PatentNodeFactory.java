@@ -1,4 +1,4 @@
-package node.localPatent;
+package node.patent;
 
 import org.knime.core.node.NodeDialogPane;
 import org.knime.core.node.NodeFactory;
@@ -10,49 +10,53 @@ import org.knime.core.node.NodeView;
  *
  * @author Patrick Penner
  */
-public class PatentNodeFactory 
-        extends NodeFactory<PatentNodeModel> {
+public class PatentNodeFactory extends NodeFactory<PatentNodeModel>
+{
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public PatentNodeModel createNodeModel() {
-        return new PatentNodeModel();
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public PatentNodeModel createNodeModel()
+  {
+    return new PatentNodeModel();
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int getNrNodeViews() {
-        return 1;
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public int getNrNodeViews()
+  {
+    return 1;
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public NodeView<PatentNodeModel> createNodeView(final int viewIndex,
-            final PatentNodeModel nodeModel) {
-        return new PatentNodeView(nodeModel);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public NodeView<PatentNodeModel> createNodeView(final int viewIndex,
+      final PatentNodeModel nodeModel)
+  {
+    return new PatentNodeView(nodeModel);
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean hasDialog() {
-        return true;
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean hasDialog()
+  {
+    return true;
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public NodeDialogPane createNodeDialogPane() {
-        return new PatentNodeDialog();
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public NodeDialogPane createNodeDialogPane()
+  {
+    return new PatentNodeDialog();
+  }
 
 }
-

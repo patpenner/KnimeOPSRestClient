@@ -19,7 +19,7 @@
     <node category-path="/" factory-class="node.urifinder.URIFinderNodeFactory" id="node.urifinder.URIFinderNodeFactory"/>
     <node category-path="/" factory-class="node.patentsplitter.PatentSplitterNodeFactory" id="node.urifinder.PatentSplitterNodeFactory"/>
    	<node category-path="/" factory-class="node.openPhactsPatent.OpenPhactsPatentNodeFactory" id="node.openPhactsPatent.OpenPhactsPatentNodeFactory"/>
-	<node category-path="/" factory-class="node.localPatent.PatentNodeFactory" id="node.localPatent.PatentNodeFactory"/>
+	<node category-path="/" factory-class="node.patent.PatentNodeFactory" id="node.localPatent.PatentNodeFactory"/>
   </extension>
    
 </plugin>

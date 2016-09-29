@@ -1,4 +1,4 @@
-package node.localPatent;
+package node.patent;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -130,29 +130,4 @@ public class DatabaseHandler
 
     return result;
   }
-
-  public static void main(String[] args) throws Exception
-  { 
-    List<String> smiles = readLines("/data/local/TestSmiles.txt");
-
-    DatabaseHandler dbHandler = new DatabaseHandler("localhost",
-        "SureChEMBL_local", "root");
-
-    for (String smile : smiles)
-    {
-      System.out.println("Getting Patents for:\n" + smile);
-      Collection<Patent> patents = dbHandler.getPatents(smile, "Smiles", "EN",
-          false);
-
-      for (Patent patent : patents)
-      {
-        Map<Integer, Long> fields = patent.getFields();
-        System.out.println(patent.getPatentId() + "\t"
-            + patent.getPublicationDate() + "\t" + fields.get(1) + "\t"
-            + fields.get(2) + "\t" + fields.get(3) + "\t" + fields.get(4) + "\t"
-            + fields.get(5) + "\t" + fields.get(6) + "\t" + patent.getTitle());
-      }
-    }
-  }
-
 }

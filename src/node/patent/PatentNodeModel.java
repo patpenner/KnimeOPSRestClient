@@ -1,4 +1,4 @@
-package node.localPatent;
+package node.patent;
 
 import java.io.File;
 import java.io.IOException;
@@ -45,7 +45,7 @@ public class PatentNodeModel extends NodeModel
 {
 
   private static final int IN_PORT_IDENTIFIER = 0;
-  
+
   public static final String CFGKEY_COLUMN_NAME = "columnName";
 
   private final SettingsModelString m_column = new SettingsModelString(
@@ -87,9 +87,10 @@ public class PatentNodeModel extends NodeModel
     // getting the column index for the identifier
     int columnIndex = inputTableSpec.findColumnIndex(m_column.getStringValue());
     String identifierType = null;
-    
+
     // createing DatabaseHandler
-    DatabaseHandler databaseHandler = new DatabaseHandler("localhost", "SureChEMBL_local", "root");
+    DatabaseHandler databaseHandler = new DatabaseHandler("localhost",
+        "SureChEMBL_local", "root");
 
     long rowCount = inData[0].size();
     long currentRow = 0;
@@ -108,20 +109,23 @@ public class PatentNodeModel extends NodeModel
       {
         identifierType = checkIdentifierType(identifier);
       }
-      
-      Collection<Patent> patents = databaseHandler.getPatents(identifier, identifierType, "EN", false);
-      
+
+      Collection<Patent> patents = databaseHandler.getPatents(identifier,
+          identifierType, "EN", false);
+
       if (patents.size() > 0)
       {
         for (Patent patent : patents)
         {
-          patentedContainer.addRowToTable(makePatentRow(patentRowIndex, row, patent));
+          patentedContainer
+              .addRowToTable(makePatentRow(patentRowIndex, row, patent));
           patentRowIndex++;
         }
       }
       else
       {
-        notPatentedContainer.addRowToTable(makeNoPatentRow(noPatentRowIndex, row));
+        notPatentedContainer
+            .addRowToTable(makeNoPatentRow(noPatentRowIndex, row));
         noPatentRowIndex++;
       }
 
@@ -141,24 +145,23 @@ public class PatentNodeModel extends NodeModel
     BufferedDataTable notPatented = exec
         .createBufferedDataTable(notPatentedContainer.getTable(), exec);
 
-    // TODO: Return a BufferedDataTable for each output port
     return new BufferedDataTable[] { notPatented, patented};
   }
 
   private DataRow makeNoPatentRow(long noPatentRowIndex, DataRow row)
   {
     RowKey rowKey = RowKey.createRowKey(noPatentRowIndex);
-    
-    DataRow joinedRow = new JoinedRow(new DefaultRow(rowKey, row), new DefaultRow(rowKey, StringCellFactory.create("No Patents Found")));
-    
+
+    DataRow joinedRow = new JoinedRow(new DefaultRow(rowKey, row),
+        new DefaultRow(rowKey, StringCellFactory.create("No Patents Found")));
+
     return joinedRow;
   }
 
-  private DataRow makePatentRow(long patentRowIndex, DataRow row,
-      Patent patent)
+  private DataRow makePatentRow(long patentRowIndex, DataRow row, Patent patent)
   {
     RowKey rowKey = RowKey.createRowKey(patentRowIndex);
-    
+
     Map<Integer, Long> patentFields = patent.getFields();
     Long inDescription = patentFields.get(1);
     Long inClaims = patentFields.get(2);
@@ -166,9 +169,8 @@ public class PatentNodeModel extends NodeModel
     Long inTitle = patentFields.get(4);
     Long inImages = patentFields.get(5);
     Long inAttachments = patentFields.get(6);
-    
-    DataCell[] newCells = {
-        StringCellFactory.create(patent.getPatentId()),
+
+    DataCell[] newCells = { StringCellFactory.create(patent.getPatentId()),
         DateAndTimeCellFactory.create(patent.getPublicationDate().toString()),
         StringCellFactory.create(patent.getTitle()),
         LongCellFactory.create(inTitle.intValue()),
@@ -176,11 +178,11 @@ public class PatentNodeModel extends NodeModel
         LongCellFactory.create(inDescription.intValue()),
         LongCellFactory.create(inClaims.intValue()),
         LongCellFactory.create(inImages.intValue()),
-        LongCellFactory.create(inAttachments.intValue())
-    };
-    
-    DataRow joinedRow = new JoinedRow(new DefaultRow(rowKey, row), new DefaultRow(rowKey, newCells));
-    
+        LongCellFactory.create(inAttachments.intValue())};
+
+    DataRow joinedRow = new JoinedRow(new DefaultRow(rowKey, row),
+        new DefaultRow(rowKey, newCells));
+
     return joinedRow;
   }
 
@@ -262,7 +264,6 @@ public class PatentNodeModel extends NodeModel
     DataTableSpec notPatentedTableSpec = new DataTableSpec(inputTableSpec,
         createNotPatentedSpec());
 
-    // TODO: generated method stub
     return new DataTableSpec[] { notPatentedTableSpec, patentedTableSpec};
   }
 
@@ -279,13 +280,13 @@ public class PatentNodeModel extends NodeModel
             .createSpec(),
         new DataColumnSpecCreator("Occ. Claims", LongCell.TYPE).createSpec(),
         new DataColumnSpecCreator("Occ. Image", LongCell.TYPE).createSpec(),
-        new DataColumnSpecCreator("Occ. Attachements", LongCell.TYPE).createSpec(),};
+        new DataColumnSpecCreator("Occ. Attachements", LongCell.TYPE)
+            .createSpec(),};
     return new DataTableSpec(newColumns);
   }
 
   private DataTableSpec createNotPatentedSpec()
   {
-    // TODO Auto-generated method stub
     return new DataTableSpec(
         new DataColumnSpecCreator("Patent Information", StringCell.TYPE)
             .createSpec());

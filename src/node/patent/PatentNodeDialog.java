@@ -1,14 +1,4 @@
-package node.localPatent;
-
-import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SpringLayout;
+package node.patent;
 
 import org.knime.core.data.DataTableSpec;
 import org.knime.core.node.InvalidSettingsException;
@@ -39,9 +29,9 @@ public class PatentNodeDialog extends NodeDialogPane
   protected PatentNodeDialog()
   {
     filterPanel = new FilterPanel();
-    
+
     addTab("Options", filterPanel);
-    
+
   }
 
   @Override
@@ -51,10 +41,9 @@ public class PatentNodeDialog extends NodeDialogPane
     // TODO Auto-generated method stub
 
   }
-  
+
   @Override
   protected void loadSettingsFrom(final NodeSettingsRO settings,
       final DataTableSpec[] specs) throws NotConfigurableException
-  {
-  }
+  {}
 }
