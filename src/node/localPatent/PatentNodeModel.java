@@ -2,19 +2,27 @@ package node.localPatent;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
+import java.util.Map;
 
 import org.knime.chem.types.InchiValue;
 import org.knime.chem.types.SmilesValue;
+import org.knime.core.data.DataCell;
 import org.knime.core.data.DataColumnSpec;
 import org.knime.core.data.DataColumnSpecCreator;
 import org.knime.core.data.DataRow;
 import org.knime.core.data.DataTableSpec;
+import org.knime.core.data.RowKey;
 import org.knime.core.data.StringValue;
 import org.knime.core.data.container.DataContainer;
 import org.knime.core.data.date.DateAndTimeCell;
-import org.knime.core.data.def.BooleanCell;
+import org.knime.core.data.date.DateAndTimeCellFactory;
+import org.knime.core.data.def.DefaultRow;
+import org.knime.core.data.def.JoinedRow;
 import org.knime.core.data.def.LongCell;
+import org.knime.core.data.def.LongCell.LongCellFactory;
 import org.knime.core.data.def.StringCell;
+import org.knime.core.data.def.StringCell.StringCellFactory;
 import org.knime.core.node.BufferedDataTable;
 import org.knime.core.node.CanceledExecutionException;
 import org.knime.core.node.ExecutionContext;
@@ -37,10 +45,11 @@ public class PatentNodeModel extends NodeModel
 {
 
   private static final int IN_PORT_IDENTIFIER = 0;
+  
   public static final String CFGKEY_COLUMN_NAME = "columnName";
 
   private final SettingsModelString m_column = new SettingsModelString(
-      URIFinderNodeModel.CFGKEY_COLUMN_NAME, "");
+      URIFinderNodeModel.CFGKEY_COLUMN_NAME, "Smiles");
 
   /**
    * Constructor for the node model.
@@ -78,6 +87,9 @@ public class PatentNodeModel extends NodeModel
     // getting the column index for the identifier
     int columnIndex = inputTableSpec.findColumnIndex(m_column.getStringValue());
     String identifierType = null;
+    
+    // createing DatabaseHandler
+    DatabaseHandler databaseHandler = new DatabaseHandler("localhost", "SureChEMBL_local", "root");
 
     long rowCount = inData[0].size();
     long currentRow = 0;
@@ -97,9 +109,21 @@ public class PatentNodeModel extends NodeModel
         identifierType = checkIdentifierType(identifier);
       }
       
-      /*
-       * TODO: Insert Functionality here
-       */
+      Collection<Patent> patents = databaseHandler.getPatents(identifier, identifierType, "EN", false);
+      
+      if (patents.size() > 0)
+      {
+        for (Patent patent : patents)
+        {
+          patentedContainer.addRowToTable(makePatentRow(patentRowIndex, row, patent));
+          patentRowIndex++;
+        }
+      }
+      else
+      {
+        notPatentedContainer.addRowToTable(makeNoPatentRow(noPatentRowIndex, row));
+        noPatentRowIndex++;
+      }
 
       currentRow++;
 
@@ -119,6 +143,45 @@ public class PatentNodeModel extends NodeModel
 
     // TODO: Return a BufferedDataTable for each output port
     return new BufferedDataTable[] { notPatented, patented};
+  }
+
+  private DataRow makeNoPatentRow(long noPatentRowIndex, DataRow row)
+  {
+    RowKey rowKey = RowKey.createRowKey(noPatentRowIndex);
+    
+    DataRow joinedRow = new JoinedRow(new DefaultRow(rowKey, row), new DefaultRow(rowKey, StringCellFactory.create("No Patents Found")));
+    
+    return joinedRow;
+  }
+
+  private DataRow makePatentRow(long patentRowIndex, DataRow row,
+      Patent patent)
+  {
+    RowKey rowKey = RowKey.createRowKey(patentRowIndex);
+    
+    Map<Integer, Long> patentFields = patent.getFields();
+    Long inDescription = patentFields.get(1);
+    Long inClaims = patentFields.get(2);
+    Long inAbstract = patentFields.get(3);
+    Long inTitle = patentFields.get(4);
+    Long inImages = patentFields.get(5);
+    Long inAttachments = patentFields.get(6);
+    
+    DataCell[] newCells = {
+        StringCellFactory.create(patent.getPatentId()),
+        DateAndTimeCellFactory.create(patent.getPublicationDate().toString()),
+        StringCellFactory.create(patent.getTitle()),
+        LongCellFactory.create(inTitle.intValue()),
+        LongCellFactory.create(inAbstract.intValue()),
+        LongCellFactory.create(inDescription.intValue()),
+        LongCellFactory.create(inClaims.intValue()),
+        LongCellFactory.create(inImages.intValue()),
+        LongCellFactory.create(inAttachments.intValue())
+    };
+    
+    DataRow joinedRow = new JoinedRow(new DefaultRow(rowKey, row), new DefaultRow(rowKey, newCells));
+    
+    return joinedRow;
   }
 
   private String checkIdentifierType(String identifier)
@@ -200,7 +263,7 @@ public class PatentNodeModel extends NodeModel
         createNotPatentedSpec());
 
     // TODO: generated method stub
-    return new DataTableSpec[] { patentedTableSpec, notPatentedTableSpec};
+    return new DataTableSpec[] { notPatentedTableSpec, patentedTableSpec};
   }
 
   private DataTableSpec createPatentedSpec()
@@ -216,7 +279,7 @@ public class PatentNodeModel extends NodeModel
             .createSpec(),
         new DataColumnSpecCreator("Occ. Claims", LongCell.TYPE).createSpec(),
         new DataColumnSpecCreator("Occ. Image", LongCell.TYPE).createSpec(),
-        new DataColumnSpecCreator("Occ. CWU", LongCell.TYPE).createSpec(),};
+        new DataColumnSpecCreator("Occ. Attachements", LongCell.TYPE).createSpec(),};
     return new DataTableSpec(newColumns);
   }
 

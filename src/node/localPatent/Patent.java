@@ -1,25 +1,22 @@
-package local;
+package node.localPatent;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Patent
 {
   private String patentId;
-  private String publicationDate;
-  private int lifeSciRel;
+  private Date publicationDate;
   private String title;
   private Map<Integer, Long> fields;
 
-  public Patent(String patentId, String publicationDate, int lifeSciRel,
-      String title, int field, long fieldFrequency)
+  public Patent(String patentId, Date publicationDate, String title)
   {
     this.patentId = patentId;
     this.publicationDate = publicationDate;
-    this.lifeSciRel = lifeSciRel;
     this.title = title;
     this.fields = new HashMap<Integer, Long>();
-    this.fields.put(field, fieldFrequency);
 
   }
 
@@ -28,14 +25,9 @@ public class Patent
     return patentId;
   }
 
-  public String getPublicationDate()
+  public Date getPublicationDate()
   {
     return publicationDate;
-  }
-
-  public int getLifeSciRel()
-  {
-    return lifeSciRel;
   }
 
   public String getTitle()
